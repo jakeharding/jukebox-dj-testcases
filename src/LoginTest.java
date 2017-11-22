@@ -8,8 +8,12 @@ import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
 	private LoginPage page;
-	private String username = "admin";
-	private String password = "admin";
+	private String validUsername = "admin";
+	private String validPassword = "admin";
+
+	private String invalidUsername = "NoGoodUsername";
+	private String invalidPassword = "BadPassword";
+
 
 
 	@Before
@@ -26,16 +30,28 @@ public class LoginTest extends BaseTest {
   	public void testLogin() throws Exception {
 		assertTrue(page.usernameInput.isVisible());
 		assertTrue(page.passwordInput.isVisible());
-		
-		page.passwordInput.enter(username);
-		page.usernameInput.enter(password);
+
+		page.passwordInput.enter(validUsername);
+		page.usernameInput.enter(validPassword);
 		pause();
-		page.submitBtn.click();
+        page.submit();
 
 		wait.until(ExpectedConditions.urlContains("manage-events"));
 		pause();
 	}
 
-  
+	@Test
+    public void testInvalidLogin () throws Exception {
+        assertTrue(page.usernameInput.isVisible());
+        assertTrue(page.passwordInput.isVisible());
+
+        page.passwordInput.enter(invalidPassword);
+        page.usernameInput.enter(invalidUsername);
+        pause();
+
+        page.submit();
+        wait.until(page.errorIsPresent());
+        pause();
+    }
 
 }

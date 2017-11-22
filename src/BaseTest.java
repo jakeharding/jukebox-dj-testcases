@@ -9,32 +9,31 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseTest {
-	protected WebDriver driver;
-	protected WebDriverWait wait;
-	protected static String baseUrl = "http://localhost:8000/";
-	protected StringBuffer verificationErrors = new StringBuffer();
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected static String baseUrl = "http://localhost:8000/";
+    private StringBuffer verificationErrors = new StringBuffer();
 
-	@Before
-	public void setUp() throws Exception {
-//	    driver = new FirefoxDriver();
-		System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
-		driver = new ChromeDriver();
-		wait = new WebDriverWait(driver, 3);
-		
-		baseUrl = "http://localhost:8000/";
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-	}
-	
-	@After
-	public void tearDown() throws Exception {
-	    driver.quit();
-	    String verificationErrorString = verificationErrors.toString();
-	    if (!"".equals(verificationErrorString)) {
-	    		fail(verificationErrorString);
-	    }
+    @Before
+    public void setUp() throws Exception {
+//        driver = new FirefoxDriver();
+//        System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, 3);
+
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
-	public void pause () throws Exception {
-		Thread.sleep(2000);
-	}
+    @After
+    public void tearDown() throws Exception {
+        driver.close();
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) {
+                fail(verificationErrorString);
+        }
+    }
+
+    public void pause () throws Exception {
+        Thread.sleep(2000);
+    }
 }

@@ -5,30 +5,31 @@ import org.openqa.selenium.*;
 import pages.BaseElement;
 
 public class Input extends BaseElement {
-	private WebElement element;
-	private String tid;
-	
-	public Input (WebDriver driver, String tid) {
-		super(driver);
-		this.tid = tid;
-		this.element = getElementByTid(tid).findElement(By.cssSelector("input"));
-		
-	}
+    private WebElement element;
+    private String tid;
 
-	public WebElement getElement() {
-		return element;
-	}
+    public Input (WebDriver driver, String tid) {
+        super(driver);
+        this.tid = tid;
+        // Using ionic inputs so we have to find the child input to interact with.
+        this.element = getElementByTid(tid).findElement(By.cssSelector("input"));
 
-	public void setElement(WebElement element) {
-		this.element = element;
-	}
-	
-	public void enter(String text) {
-		element.clear();
-		element.sendKeys(text);
-	}
-	
-	public boolean isVisible() {
-		return element.isDisplayed();
-	}
+    }
+
+    public WebElement getElement() {
+        return element;
+    }
+
+    public void setElement(WebElement element) {
+        this.element = element;
+    }
+
+    public void enter(String text) {
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    public boolean isVisible() {
+        return element.isDisplayed();
+    }
 }

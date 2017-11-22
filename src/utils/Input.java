@@ -25,9 +25,15 @@ public class Input extends BaseElement {
     }
 
     public void enter(String text) {
-        element.clear();
+        clear();
         element.sendKeys(text);
     }
+
+    public void clear() {
+        String text = element.getAttribute("value");
+        String deleteText = new String(new char[text.length()]).replace('\0', '\b');
+        element.sendKeys(deleteText);
+     }
 
     public boolean isVisible() {
         return element.isDisplayed();

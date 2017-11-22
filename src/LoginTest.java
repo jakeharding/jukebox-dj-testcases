@@ -3,7 +3,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
@@ -18,11 +17,7 @@ public class LoginTest extends BaseTest {
 
 	@Before
 	public void setUp() throws Exception {
-	  
-		super.setUp();
-    
 		driver.get(baseUrl + "#/login");
-		
 		page = new LoginPage(driver);
 	}
 
@@ -33,10 +28,10 @@ public class LoginTest extends BaseTest {
 
 		page.passwordInput.enter(validUsername);
 		page.usernameInput.enter(validPassword);
+
 		pause();
         page.submit();
-
-		wait.until(ExpectedConditions.urlContains("manage-events"));
+		wait.until(page.hasRedirectedToDashboard());
 		pause();
 	}
 
@@ -52,6 +47,16 @@ public class LoginTest extends BaseTest {
         page.submit();
         wait.until(page.errorIsPresent());
         pause();
+    }
+
+    @Test
+    public void testInvalidUsernameEntered () throws Exception {
+	    page.usernameInput.enter("LongUsername");
+
+	    pause();
+        page.usernameInput.clear();
+	    wait.until(page.usernameErrorIsVisible());
+	    pause();
     }
 
 }

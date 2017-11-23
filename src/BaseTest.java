@@ -72,5 +72,6 @@ public class BaseTest {
         l.usernameInput.enter(username);
         l.passwordInput.enter(password);
         l.submit();
+        wait.until(l.hasRedirectedToDashboard());
     }
 }

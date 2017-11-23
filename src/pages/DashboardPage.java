@@ -3,7 +3,8 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * DashboardPage.java
@@ -16,17 +17,28 @@ import org.openqa.selenium.support.*;
  */
 public class DashboardPage extends BaseElement {
 
-    @FindBy(xpath="//*[@tid='logout']")
-    public WebElement logoutLink;
+    public WebElement event;
+    public WebElement createtBtn;
 
-    @FindBy(xpath="//*[tid='events-list']")
-    public WebElement events;
-
-    private WebElement createtBtn;
+    public static final String eventTid = "events_0";
+    public static final String createBtnTid = "create-btn";
 
     public DashboardPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        event = getElementByTid(eventTid);
+        createtBtn = getElementByTid(createBtnTid);
+    }
+
+    public ExpectedCondition<Boolean> hasRedirectedToCreatePage () {
+        return ExpectedConditions.urlContains("create-event");
+    }
+
+    public ExpectedCondition<Boolean> hasRedirectedToEventPage () {
+        return ExpectedConditions.urlContains("/events/");
+    }
+
+    public ExpectedCondition<WebElement> hasEventsList () {
+        return ExpectedConditions.visibilityOf(event);
     }
 
 

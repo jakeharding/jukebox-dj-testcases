@@ -1,5 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -30,15 +32,19 @@ public class ManageEventsTest extends BaseTest {
         loginPage.submit();
 
         page = new DashboardPage(driver);
-
+        wait.until(page.hasEventsList());
     }
 
     @Test
-    public void testPageInit () {
-        wait.until(ExpectedConditions.visibilityOf(page.logoutLink));
-        wait.until(ExpectedConditions.visibilityOf(page.events));
+    public void testClickEvent () {
+        page.event.click();
+        wait.until(page.hasRedirectedToEventPage());
+    }
 
-        assert false;
+    @Test
+    public void testClickCreateEvent () {
+        page.createtBtn.click();
+        wait.until(page.hasRedirectedToCreatePage());
     }
 
 }

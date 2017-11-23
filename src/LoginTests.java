@@ -1,3 +1,8 @@
+import org.junit.*;
+import static org.junit.Assert.*;
+
+import pages.LoginPage;
+
 /**
  * LoginTests.java
  * <p>
@@ -7,13 +12,6 @@
  * <p>
  * Test the login page.
  */
-
-
-import org.junit.*;
-import static org.junit.Assert.*;
-
-import pages.LoginPage;
-
 public class LoginTests extends BaseTest {
     private LoginPage page;
     private String validUsername = "admin";

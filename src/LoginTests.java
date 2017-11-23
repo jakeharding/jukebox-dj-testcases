@@ -54,7 +54,7 @@ public class LoginTests extends BaseTest {
 
         pause();
         page.submit();
-        wait.until(page.errorIsPresent());
+        wait.until(page.hasInvalidLoginError());
         pause();
     }
 
@@ -64,8 +64,24 @@ public class LoginTests extends BaseTest {
         page.usernameInput.clear();
         page.passwordInput.clear();
         pause();
-        wait.until(page.usernameErrorIsVisible());
+        wait.until(page.hasUsernameError());
         pause();
+    }
+
+    @Test
+    public void testLogout () throws Exception {
+        login();
+
+        wait.until(page.hasLogoutLink());
+        page.logoutLink.click();
+
+        wait.until(page.isOnLoginPage());
+    }
+
+    private void login() {
+        page.passwordInput.enter(validPassword);
+        page.usernameInput.enter(validUsername);
+        page.submit();
     }
 
 }

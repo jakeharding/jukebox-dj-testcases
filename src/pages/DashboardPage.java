@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class DashboardPage extends BaseElement {
 
     public WebElement event;
-    public WebElement createtBtn;
+    public WebElement createBtn;
 
     public static final String eventTid = "events_0";
     public static final String createBtnTid = "create-btn";
@@ -26,7 +26,7 @@ public class DashboardPage extends BaseElement {
     public DashboardPage(WebDriver driver) {
         super(driver);
         event = getElementByTid(eventTid);
-        createtBtn = getElementByTid(createBtnTid);
+        createBtn = getElementByTid(createBtnTid);
     }
 
     public ExpectedCondition<Boolean> hasRedirectedToCreatePage () {

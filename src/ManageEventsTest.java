@@ -1,8 +1,5 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.DashboardPage;
 import pages.LoginPage;
 
@@ -43,7 +40,7 @@ public class ManageEventsTest extends BaseTest {
 
     @Test
     public void testClickCreateEvent () {
-        page.createtBtn.click();
+        page.createBtn.click();
         wait.until(page.hasRedirectedToCreatePage());
     }
 

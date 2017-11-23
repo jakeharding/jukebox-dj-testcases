@@ -14,9 +14,17 @@ import org.openqa.selenium.*;
 public class BaseElement {
     WebDriver driver;
 
+    public WebElement homeLink;
+
+    public static final String homeLinkTid = "home-link";
 
     public BaseElement (WebDriver driver) {
         this.driver = driver;
+        homeLink = getElementByTid(homeLinkTid);
+    }
+
+    public void goHome () {
+        homeLink.click();
     }
 
     public WebElement getElementByTid(String tid) {

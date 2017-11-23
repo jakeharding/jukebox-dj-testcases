@@ -22,11 +22,11 @@ public class LoginPage extends BaseElement {
     public WebElement usernameError;
     public WebElement logoutLink;
 
-    public static String usernameTid = "username-input";
-    public static String passwordTid = "password-input";
-    public static String submitTid = "submit-btn";
-    public static String usernameErrorTid = "username-error";
-    public static String logoutLinkTid = "logout";
+    public final static String usernameTid = "username-input";
+    public final static String passwordTid = "password-input";
+    public final static String submitTid = "submit-btn";
+    public final static String usernameErrorTid = "username-error";
+    public final static String logoutLinkTid = "logout";
 
 
     public LoginPage (WebDriver driver) {
@@ -58,7 +58,7 @@ public class LoginPage extends BaseElement {
         return ExpectedConditions.visibilityOf(logoutLink);
     }
 
-    public ExpectedCondition<Boolean> isOnLoginPage () {
-        return ExpectedConditions.urlContains("login");
+    public ExpectedCondition<Boolean> isOnHomePage() {
+        return ExpectedConditions.urlContains("/home");
     }
 }

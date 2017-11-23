@@ -68,7 +68,7 @@ public class LoginTests extends BaseTest {
         wait.until(page.hasLogoutLink());
         page.logoutLink.click();
         pause();
-        wait.until(page.isOnLoginPage());
+        wait.until(page.isOnHomePage());
         pause();
     }
 }

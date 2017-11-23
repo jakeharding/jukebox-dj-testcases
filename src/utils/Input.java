@@ -37,6 +37,10 @@ public class Input extends BaseElement {
         }
      }
 
+     public String getValue () {
+        return element.getAttribute("value");
+     }
+
     public boolean isVisible() {
         return element.isDisplayed();
     }

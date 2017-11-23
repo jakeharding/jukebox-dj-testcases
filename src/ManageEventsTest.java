@@ -27,15 +27,19 @@ public class ManageEventsTest extends BaseTest {
     }
 
     @Test
-    public void testClickEvent () {
+    public void testClickEvent () throws Exception {
         page.event.click();
+        pause();
         wait.until(page.hasRedirectedToEventPage());
+        pause();
     }
 
     @Test
-    public void testClickCreateEvent () {
+    public void testClickCreateEvent () throws Exception {
         page.createBtn.click();
+        pause();
         wait.until(page.hasRedirectedToCreatePage());
+        pause();
     }
 
 }

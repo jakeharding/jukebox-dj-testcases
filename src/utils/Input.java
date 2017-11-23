@@ -31,8 +31,10 @@ public class Input extends BaseElement {
 
     public void clear() {
         String text = element.getAttribute("value");
-        String deleteText = new String(new char[text.length()]).replace('\0', '\b');
-        element.sendKeys(deleteText);
+        if(text != null) {
+            String deleteText = new String(new char[text.length()]).replace('\0', '\b');
+            element.sendKeys(deleteText);
+        }
      }
 
     public boolean isVisible() {

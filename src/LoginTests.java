@@ -14,13 +14,9 @@ import pages.LoginPage;
  */
 public class LoginTests extends BaseTest {
     private LoginPage page;
-    private String validUsername = "admin";
-    private String validPassword = "admin";
 
     private String invalidUsername = "NoGoodUsername";
     private String invalidPassword = "BadPassword";
-
-
 
     @Before
     public void setUp() throws Exception {
@@ -33,8 +29,8 @@ public class LoginTests extends BaseTest {
         assertTrue(page.usernameInput.isVisible());
         assertTrue(page.passwordInput.isVisible());
 
-        page.passwordInput.enter(validUsername);
-        page.usernameInput.enter(validPassword);
+        page.passwordInput.enter(password);
+        page.usernameInput.enter(username);
 
         pause();
         page.submit();
@@ -69,17 +65,10 @@ public class LoginTests extends BaseTest {
     @Test
     public void testLogout () throws Exception {
         login();
-
         wait.until(page.hasLogoutLink());
         page.logoutLink.click();
-
+        pause();
         wait.until(page.isOnLoginPage());
+        pause();
     }
-
-    private void login() {
-        page.passwordInput.enter(validPassword);
-        page.usernameInput.enter(validUsername);
-        page.submit();
-    }
-
 }

@@ -21,13 +21,7 @@ public class ManageEventsTest extends BaseTest {
     @Before
     public void setUp() {
         // Requires login
-
-        driver.get(baseUrl + "#/login");
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.usernameInput.enter("admin");
-        loginPage.passwordInput.enter("admin");
-        loginPage.submit();
-
+        login();
         page = new DashboardPage(driver);
         wait.until(page.hasEventsList());
     }

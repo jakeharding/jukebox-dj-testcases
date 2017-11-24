@@ -1,6 +1,8 @@
 package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * BaseElement.java
@@ -14,17 +16,8 @@ import org.openqa.selenium.*;
 public class BaseElement {
     WebDriver driver;
 
-    public WebElement homeLink;
-
-    public static final String homeLinkTid = "home-link";
-
     public BaseElement (WebDriver driver) {
         this.driver = driver;
-        homeLink = getElementByTid(homeLinkTid);
-    }
-
-    public void goHome () {
-        homeLink.click();
     }
 
     public WebElement getElementByTid(String tid) {
@@ -33,5 +26,9 @@ public class BaseElement {
 
     public By getByForTid(String tid) {
         return By.cssSelector(String.format("[tid=%s]", tid));
+    }
+
+    public ExpectedCondition<Boolean> isClickable() {
+        return ExpectedConditions.not(ExpectedConditions.attributeContains(By.className("click-block"), "class", "active"));
     }
 }

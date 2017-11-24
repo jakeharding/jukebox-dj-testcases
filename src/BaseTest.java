@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import ex.TestExcepetion;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -22,6 +23,8 @@ public class BaseTest {
     private StringBuffer verificationErrors = new StringBuffer();
     private static final String pathToProperties = "application.properties";
 
+    // Set to false when developing tests to decrease test time
+    private final Boolean shouldPause = false;
 
     @BeforeClass
     public static void beforeClass () {
@@ -41,11 +44,11 @@ public class BaseTest {
             baseUrl = p.getProperty("baseUrl");
 
         } catch (Exception e) {
-            fail("No properties file. Must have a properties file to hold username and password for tests.");
+            throw new TestExcepetion("No properties file. Must have a properties file to hold username and password for tests.");
         }
 
         if (username.isEmpty() || password.isEmpty()) {
-            fail("Please supply a username and password in application.properties");
+            throw new TestExcepetion("Please supply a username and password in application.properties");
         }
     }
 
@@ -63,7 +66,9 @@ public class BaseTest {
     }
 
     public void pause () throws Exception {
-        Thread.sleep(2000);
+        if(shouldPause) {
+            Thread.sleep(2000);
+        }
     }
 
     protected static void login () {

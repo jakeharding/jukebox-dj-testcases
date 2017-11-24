@@ -61,4 +61,8 @@ public class LoginPage extends BaseElement {
     public ExpectedCondition<Boolean> isOnHomePage() {
         return ExpectedConditions.urlContains("/home");
     }
+
+    public ExpectedCondition<Boolean> hasRedirectedToLogin () {
+        return ExpectedConditions.urlContains("/login");
+    }
 }

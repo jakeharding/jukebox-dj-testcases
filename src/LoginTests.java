@@ -71,4 +71,10 @@ public class LoginTests extends BaseTest {
         wait.until(page.isOnHomePage());
         pause();
     }
+
+    @Test
+    public void testRedirectToLogin () {
+        driver.get(baseUrl + "#/manage-events");
+        wait.until(page.hasRedirectedToLogin());
+    }
 }

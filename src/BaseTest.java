@@ -24,7 +24,7 @@ public class BaseTest {
     private static final String pathToProperties = "application.properties";
 
     // Set to false when developing tests to decrease test time
-    private final Boolean shouldPause = false;
+    private final Boolean shouldPause = true;
 
     @BeforeClass
     public static void beforeClass () {

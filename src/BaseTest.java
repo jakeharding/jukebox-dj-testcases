@@ -28,6 +28,9 @@ public class BaseTest {
 
     @BeforeClass
     public static void beforeClass () {
+        //This chrome opens to the chrome driver opens to the settings page when a test starts,
+        // and causes tests to fail because of the expectation of elements being present on the screen.
+        //An updated version of the chrome driver was installed locally for developing the tests.
 //        System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
 //        driver = new FirefoxDriver()
         driver = new ChromeDriver();
